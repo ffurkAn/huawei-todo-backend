@@ -19,11 +19,19 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long objId;
     private String email;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<ToDoList> lists;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userEmail", referencedColumnName = "email")
+    private List<ToDoList> toDoLists;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", toDoLists=" + toDoLists +
+                '}';
+    }
 }

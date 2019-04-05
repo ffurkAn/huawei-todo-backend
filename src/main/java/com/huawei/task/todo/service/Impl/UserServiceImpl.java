@@ -2,6 +2,7 @@ package com.huawei.task.todo.service.Impl;
 
 import com.huawei.task.todo.exception.TODOException;
 import com.huawei.task.todo.model.Form.LoginForm;
+import com.huawei.task.todo.model.Info.UserInfo;
 import com.huawei.task.todo.model.User;
 import com.huawei.task.todo.repository.UserRepository;
 import com.huawei.task.todo.service.UserService;
@@ -19,26 +20,26 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Optional<User> findByLoginCredentials(LoginForm loginForm){
-        Optional<User> user = userRepository.findByEmail(loginForm.getEmail());
+    public UserInfo findByLoginCredentials(LoginForm loginForm){
+        User user = userRepository.findByEmail(loginForm.getEmail());
 
-        if(!user.isPresent()){
+        if(user == null){
             throw new TODOException(String.valueOf(HttpStatus.NOT_FOUND.value()), "kullanıcı bulunamadı");
         }
 
-        if(!user.get().getPassword().equals(loginForm.getPassword())){
+        if(!user.getPassword().equals(loginForm.getPassword())){
             throw new TODOException(String.valueOf(HttpStatus.NOT_FOUND.value()),"Kullanıcı adı ya da şifre hatalı");
         }
 
-        return user;
+        return UserInfo.map(user);
     }
 
     @Override
     public User save(LoginForm loginForm) {
 
-        Optional<User> user = userRepository.findByEmail(loginForm.getEmail());
+        User user = userRepository.findByEmail(loginForm.getEmail());
 
-        if(user.isPresent()) {
+        if(user != null){
             throw new TODOException(String.valueOf(HttpStatus.NOT_FOUND.value()),"Bu email ile kayıtlı kullanıcı vardır");
         }
 

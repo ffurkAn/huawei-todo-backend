@@ -20,12 +20,13 @@ public class ToDoList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long objId;
     private String name;
-    private String userOid;
+    private String userEmail;
 
-    @ManyToOne
-    private User user;
+    //@ManyToOne
+    //private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "toDoList")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "toDoListOid", referencedColumnName = "objId")
     private List<ToDoItem> items;
 
 }

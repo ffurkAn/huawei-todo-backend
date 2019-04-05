@@ -1,6 +1,7 @@
 package com.huawei.task.todo.model.Info;
 
 import com.huawei.task.todo.model.ToDoList;
+import com.huawei.task.todo.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 public class UserInfo {
 
-    private Long objId;
-    private String firstname;
-    private String lastname;
     private String email;
     private String password;
-    private List<ToDoList> lists;
+    private List<ToDoListInfo> lists;
+
+    public static UserInfo map(User user){
+        return new UserInfo(
+                user.getEmail(),
+                user.getPassword(),
+                ToDoListInfo.mapAll(user.getToDoLists())
+        );
+    }
 }

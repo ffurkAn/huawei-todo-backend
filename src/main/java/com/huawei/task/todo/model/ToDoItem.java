@@ -20,9 +20,7 @@ public class ToDoItem {
     private String description;
     private Date deadline;
     private String status;
-
-    @OneToOne
-    private ToDoList toDoList;
+    private String toDoListOid;
 
 
 }

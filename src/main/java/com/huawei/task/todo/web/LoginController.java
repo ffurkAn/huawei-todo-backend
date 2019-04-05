@@ -1,6 +1,7 @@
 package com.huawei.task.todo.web;
 
 import com.huawei.task.todo.model.Form.LoginForm;
+import com.huawei.task.todo.model.Info.UserInfo;
 import com.huawei.task.todo.model.User;
 import com.huawei.task.todo.service.UserService;
 import com.huawei.task.todo.util.Constants;
@@ -24,11 +25,11 @@ public class LoginController {
     @RequestMapping(value = Constants.LOGIN_CONTROLLER_LOGIN, method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody LoginForm loginForm)  {
 
-        Optional<User> user = userService.findByLoginCredentials(loginForm);
+        UserInfo user = userService.findByLoginCredentials(loginForm);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(user.get());
+                .body(user);
     }
 
     @RequestMapping(value = Constants.LOGIN_CONTROLLER_SIGN_UP, method = RequestMethod.POST)
