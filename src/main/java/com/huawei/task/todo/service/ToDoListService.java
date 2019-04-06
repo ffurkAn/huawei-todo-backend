@@ -10,4 +10,6 @@ import java.util.List;
 public interface ToDoListService {
 
     List<ToDoListInfo> findAllByEmail(String email);
+
+    void save(ToDoListInfo toDoListInfo);
 }

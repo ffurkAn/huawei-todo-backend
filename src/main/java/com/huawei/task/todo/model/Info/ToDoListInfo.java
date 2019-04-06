@@ -16,7 +16,7 @@ public class ToDoListInfo {
 
     private String objId;
     private String name;
-    //private String userEmail;
+    private String userEmail;
     //private UserInfo user;
     private List<ToDoItem> items;
 
@@ -24,6 +24,7 @@ public class ToDoListInfo {
         return new ToDoListInfo(
                 toDoList.getObjId().toString(),
                 toDoList.getName(),
+                toDoList.getUserEmail(),
                 //UserInfo.map(toDoList.getUser()),
                 toDoList.getItems()
         );

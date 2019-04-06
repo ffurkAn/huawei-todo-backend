@@ -34,4 +34,14 @@ public class ToDoListController {
                 .status(HttpStatus.OK)
                 .body(toDoListInfo);
     }
+
+    @RequestMapping(value = Constants.TO_DO_LIST_CONTROLLER_SAVE_NEW_LIST, method = RequestMethod.POST)
+    public ResponseEntity save(@RequestBody ToDoListInfo toDoListInfo){
+
+        toDoListService.save(toDoListInfo);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(true);
+    }
 }

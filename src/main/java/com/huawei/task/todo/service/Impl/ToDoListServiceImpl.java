@@ -19,4 +19,17 @@ public class ToDoListServiceImpl implements ToDoListService {
     public List<ToDoListInfo> findAllByEmail(String email) {
         return ToDoListInfo.mapAll(toDoListRepository.findAllByUserEmail(email));
     }
+
+    @Override
+    public void save(ToDoListInfo toDoListInfo) {
+
+        ToDoList toDoList = new ToDoList();
+        toDoList.setName(toDoListInfo.getName());
+        toDoList.setUserEmail(toDoListInfo.getUserEmail());
+
+
+        toDoListRepository.save(toDoList);
+    }
+
+
 }
