@@ -7,4 +7,6 @@ public class Constants {
     public static final String TO_DO_LIST_CONTROLLER = "/api";
     public static final String TO_DO_LIST_CONTROLLER_GET_ALL = "/getAllToDo";
     public static final String TO_DO_LIST_CONTROLLER_SAVE_NEW_LIST = "/saveNewList";
+    public static final String TO_DO_LIST_CONTROLLER_SAVE_NEW_ITEM = "/saveNewItem";
+
 }

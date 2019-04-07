@@ -1,9 +1,12 @@
 package com.huawei.task.todo.web;
 
 import com.huawei.task.todo.model.Form.LoginForm;
+import com.huawei.task.todo.model.Info.ToDoItemInfo;
 import com.huawei.task.todo.model.Info.ToDoListInfo;
+import com.huawei.task.todo.model.ToDoItem;
 import com.huawei.task.todo.model.ToDoList;
 import com.huawei.task.todo.model.User;
+import com.huawei.task.todo.service.ToDoItemService;
 import com.huawei.task.todo.service.ToDoListService;
 import com.huawei.task.todo.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class ToDoListController {
     @Autowired
     ToDoListService toDoListService;
 
+    @Autowired
+    ToDoItemService toDoItemService;
+
     @RequestMapping(value = Constants.TO_DO_LIST_CONTROLLER_GET_ALL, method = RequestMethod.POST)
     public ResponseEntity<List<ToDoListInfo>> getAllToDoList(@RequestBody LoginForm loginForm)  {
 
@@ -39,6 +45,16 @@ public class ToDoListController {
     public ResponseEntity save(@RequestBody ToDoListInfo toDoListInfo){
 
         toDoListService.save(toDoListInfo);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(true);
+    }
+
+    @RequestMapping(value = Constants.TO_DO_LIST_CONTROLLER_SAVE_NEW_ITEM, method = RequestMethod.POST)
+    public ResponseEntity saveItem(@RequestBody ToDoItemInfo toDoItemInfo){
+
+        toDoItemService.saveItem(toDoItemInfo);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
